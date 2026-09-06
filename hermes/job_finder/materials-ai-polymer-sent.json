@@ -363,5 +363,41 @@
     "date_found": "2026-09-05",
     "fit_score": 58,
     "sent_to_telegram": false
+  },
+  {
+    "company": "Lila Sciences",
+    "title": "Associate Engineer/ Engineer I, Formulations and Characterization",
+    "job_id": "4363232009",
+    "url": "https://job-boards.greenhouse.io/lilasciences/jobs/4363232009",
+    "date_found": "2026-09-05",
+    "fit_score": null,
+    "sent_to_telegram": false
+  },
+  {
+    "company": "Lila Sciences",
+    "title": "Research Scientist, Photonic Materials Discovery",
+    "job_id": "4377093009",
+    "url": "https://job-boards.greenhouse.io/lilasciences/jobs/4377093009",
+    "date_found": "2026-09-05",
+    "fit_score": null,
+    "sent_to_telegram": false
+  },
+  {
+    "company": "Varda Space Industries",
+    "title": "Biologics Formulation Research Internship - Spring 2027",
+    "job_id": "7824834003",
+    "url": "https://job-boards.greenhouse.io/vardaspace/jobs/7824834003",
+    "date_found": "2026-09-05",
+    "fit_score": null,
+    "sent_to_telegram": false
+  },
+  {
+    "company": "Micron Technology",
+    "title": "Intern - Advanced Spectroscopy and Nanoscale Materials Characterization",
+    "job_id": "JR109071",
+    "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/XMLNAME-2027-Summer-Intern--Advanced-Spectroscopy-and-Nanoscale-Materials-Characterization_JR109071",
+    "date_found": "2026-09-05",
+    "fit_score": 65,
+    "sent_to_telegram": true
   }
 ]

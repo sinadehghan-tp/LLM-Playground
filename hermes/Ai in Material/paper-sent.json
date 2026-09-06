@@ -25,5 +25,23 @@
     "url": "https://doi.org/10.1021/acs.chemmater.5c01540",
     "date_sent": "2026-09-05",
     "category": "Conjugated-polymer solution aggregation and processing–structure relationships"
+  },
+  {
+    "doi": "10.1016/j.matt.2025.102477",
+    "title": "AI-guided high-throughput investigation of conjugated polymer doping reveals importance of local polymer order and dopant-polymer separation",
+    "journal": "Matter",
+    "year": 2026,
+    "url": "https://doi.org/10.1016/j.matt.2025.102477",
+    "date_sent": "2026-09-05",
+    "category": "AI/ML for conjugated polymers; self-driving laboratories and Bayesian optimization"
+  },
+  {
+    "doi": "10.1038/s44286-025-00318-3",
+    "title": "Adaptive AI decision interface for autonomous electronic material discovery",
+    "journal": "Nature Chemical Engineering",
+    "year": 2025,
+    "url": "https://doi.org/10.1038/s44286-025-00318-3",
+    "date_sent": "2026-09-05",
+    "category": "AI/ML for organic electronic materials; self-driving laboratories and autonomous experimentation"
   }
 ]

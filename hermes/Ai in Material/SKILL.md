@@ -1,6 +1,6 @@
 ---
 name: paper-finder
-description: Find and deduplicate the single most relevant recent conjugated-polymer / materials-AI journal paper.
+description: Find and deduplicate two complementary recent polymer and materials-AI journal papers.
 version: 0.1.0
 author: sinad, Hermes Agent
 license: MIT
@@ -13,7 +13,7 @@ metadata:
 
 # Daily Paper Finder
 
-Each day, find and deliver the single most relevant peer-reviewed journal paper (published 2024-01-01 or later, prioritizing 2025+) for an early-career Materials Science PhD combining AI/ML with experimental conjugated-polymer and organic-electronics research. Verify every detail against a real source, never fabricate, and never send the same paper twice.
+Each day, find and deliver two distinct peer-reviewed journal papers (published 2024-01-01 or later, prioritizing 2025+): one focused on experimental conjugated-polymer formulation, solution conformation, aggregation, or processing even when it has little or no AI; and one focused on genuine materials AI/ML, active learning, Bayesian optimization, autonomous experimentation, or high-throughput discovery. Verify every detail against a real source, never fabricate, and never send the same paper twice.
 
 ## When to Use
 
@@ -28,17 +28,29 @@ Each day, find and deliver the single most relevant peer-reviewed journal paper 
 - Maintain `paper-sent.json` in this directory: a JSON array of every previously sent paper.
 - Telegram destination: the "Ai in Material" channel, chat ID `-1003543452515`.
 
-## Research Priorities (in order)
+## Two Required Research Tracks
 
-1. Conjugated-polymer formulation, solution conformation, aggregation, self-assembly, solubility, and processing–structure relationships. Highly relevant even without AI/ML.
-2. AI and machine learning for conjugated polymers and organic electronic materials.
-3. Organic mixed ionic–electronic conductors (OMIECs): formulation, morphology, conformation, aggregation, processing, data-driven design.
-4. Applications of conjugated polymers / organic semiconductors in OPVs, OECTs, OFETs, OPDs — especially studies linking formulation, processing, conformation, aggregation, or morphology to device performance.
-5. Self-driving laboratories, autonomous experimentation, robotic labs, closed-loop materials discovery.
-6. Bayesian optimization and active learning for experimental design or materials optimization.
-7. Systems combining AI/scientific/LLM agents with Bayesian optimization and laboratory automation.
-8. High-throughput experimental screening and ML pipelines for materials discovery.
-9. Model development and statistical methodology: Gaussian processes, graph neural networks, uncertainty quantification, out-of-distribution generalization, kernel methods, interpretable models.
+Select one distinct paper from each track. Do not rank the two tracks against each other and do not use one paper to fill both slots.
+
+### Track 1 — Conjugated-polymer formulation and conformation
+
+AI is not required and must not be used to penalize a strong experimental polymer paper. Rank candidates in this order:
+
+1. Conjugated-polymer formulation, solution conformation, aggregation, self-assembly, solubility, polymer–solvent interactions, and processing–structure relationships.
+2. OMIEC formulation, morphology, conformation, aggregation, and processing.
+3. OPV, OECT, OFET, or OPD studies that experimentally connect formulation, processing, solution structure, aggregation, or morphology to device performance.
+4. Experimental characterization of the above using methods such as DLS/SLS, SANS/SAXS/GIWAXS, UV–Vis, spectroscopy, scattering, microscopy, or rheology.
+
+### Track 2 — Materials AI and autonomous experimentation
+
+AI/ML or data-driven experimental optimization must be a core method or contribution, not a superficial mention. Rank candidates in this order:
+
+1. AI/ML for conjugated polymers, organic electronic materials, polymer formulation, morphology, processing, or device optimization, especially with experimental validation.
+2. Self-driving laboratories, autonomous experimentation, robotic labs, and closed-loop materials discovery, especially for polymers or organic materials.
+3. Bayesian optimization and active learning for experimental design or materials optimization.
+4. AI/scientific/LLM agents combined with Bayesian optimization or laboratory automation.
+5. High-throughput experimental screening with ML for materials discovery.
+6. Gaussian processes, graph neural networks, uncertainty quantification, out-of-distribution generalization, kernel methods, or interpretable models when the materials relevance is substantive.
 
 ## Exclusions
 
@@ -63,12 +75,12 @@ Search reliable scholarly databases and official journal/publisher websites. Use
 
 Rotate targeted query families across the priorities, e.g.:
 
+- `machine learning conjugated polymer`, `AI organic electronic materials`, `machine learning polymer formulation morphology`, `data-driven organic electronics`
+- `self-driving laboratory polymers`, `autonomous experimentation organic materials`, `closed-loop materials discovery`
+- `Bayesian optimization polymer formulation`, `active learning experimental materials design`
 - `conjugated polymer aggregation formulation`, `conjugated polymer solution conformation`, `processing structure conjugated polymer`
-- `machine learning conjugated polymer`, `machine learning organic electronic materials`
-- `OMIEC morphology`, `mixed ionic electronic conductor formulation`
+- `OMIEC morphology`, `mixed ionic electronic conductor formulation`, `data-driven OMIEC`
 - `organic electrochemical transistor morphology`, `organic photovoltaic formulation morphology`, `OFET film morphology processing`, `organic photodetector`
-- `self-driving laboratory materials`, `autonomous experimentation closed loop`
-- `Bayesian optimization materials`, `active learning experimental design`
 - `LLM agent Bayesian optimization laboratory`, `high throughput screening machine learning materials`
 - `Gaussian process materials`, `graph neural network polymer`, `uncertainty quantification materials`
 
@@ -85,9 +97,9 @@ Rotate targeted query families across the priorities, e.g.:
 2. Search the sources above for candidates published 2024-01-01 or later (strongly prefer 2025+).
 3. For each promising candidate, verify existence and correctness of title, journal, publication year, DOI, and link — using the abstract and paper information, not the title alone.
 4. Prefer the DOI (`https://doi.org/<doi>`) or official publisher page as the primary link.
-5. Apply exclusions and rank by the priority order. Break ties toward more recent, more directly conjugated-polymer/OMIEC/organic-electronics relevant work.
-6. Select only the single best paper not already in `paper-sent.json`.
-7. Append the selected paper to `paper-sent.json` atomically before/at delivery; keep the file valid JSON.
+5. Apply exclusions and rank candidates independently within the two required tracks.
+6. Select the single best unsent Track 1 paper and the single best unsent Track 2 paper. They must be two distinct papers. For Track 1, prefer direct experimental formulation/conformation relevance regardless of AI. For Track 2, prefer AI connected to experiments, then conjugated-polymer/OMIEC/organic-electronics relevance, then recency.
+7. Append both selected papers to `paper-sent.json` atomically before/at delivery; keep the file valid JSON. If only one track yields a suitable verified unsent paper, append and send only that paper plus the exact missing-track sentence below; never lower standards or fabricate a second paper.
 
 ## Deduplication Registry
 
@@ -100,6 +112,7 @@ Rotate targeted query families across the priorities, e.g.:
 - `url`
 - `date_sent`
 - `category`
+- `track` (`polymer-formulation-conformation` or `materials-ai`)
 
 Rules:
 
@@ -110,9 +123,11 @@ Rules:
 
 ## Telegram Output Format
 
-Deliver exactly one message, under 200 words total, plain scientific language, no exaggerated claims. Format:
+Deliver exactly one message containing two labeled paper blocks, under 400 words total, in plain scientific language with no exaggerated claims. Format:
 
 ```text
+🧪 **Polymer formulation / conformation pick**
+
 📄 **Paper title**
 
 **Journal and year:** Journal, Year
@@ -125,11 +140,32 @@ Concise sentences on the research question, methodology, and main finding.
 One sentence connecting the paper to conjugated polymers, OMIECs, OPVs, OECTs, OFETs, OPDs, materials AI, Bayesian optimization, self-driving labs, or experimental materials screening.
 
 🔗 **Paper:** Direct DOI or official publisher link
+
+🤖 **Materials-AI pick**
+
+📄 **Paper title**
+
+**Journal and year:** Journal, Year
+**Category:** [one or two Track 2 categories]
+
+**Short summary:**
+Concise sentences on the research question, methodology, and main finding.
+
+**Why it matters to my research:**
+One sentence connecting the paper to materials AI, Bayesian optimization, active learning, self-driving labs, experimental screening, conjugated polymers, or organic electronics.
+
+🔗 **Paper:** Direct DOI or official publisher link
 ```
 
-If no suitable verified paper can be found, deliver exactly:
+If one track has no suitable verified unsent paper, retain the other paper block and put the applicable exact sentence in the missing slot:
 
-`No sufficiently relevant verified paper published since 2025 was found today,`
+`No suitable verified unsent polymer formulation/conformation paper was found today.`
+
+`No suitable verified unsent materials-AI paper was found today.`
+
+If neither track has a suitable paper, deliver exactly:
+
+`[SILENT]`
 
 Do not include research notes, status reports, or error messages in the delivered output.
 
@@ -137,12 +173,13 @@ Do not include research notes, status reports, or error messages in the delivere
 
 A cycle is complete only when:
 
-- The selected paper is a real peer-reviewed journal article published 2024-01-01 or later.
-- Title, journal, year, DOI, and link are verified against a real source.
-- It passes every exclusion and is not simulation-only.
-- Its DOI/normalized title was not already in `paper-sent.json`.
+- Each selected paper is a real peer-reviewed journal article published 2024-01-01 or later.
+- The two selections are distinct and fill the two required tracks; if a track is missing, its exact missing-track sentence is used.
+- Title, journal, year, DOI, and link are verified against a real source for each selection.
+- Each selection passes every exclusion and is not simulation-only.
+- Neither selection's DOI/normalized title was already in `paper-sent.json`.
 - `paper-sent.json` remains valid JSON after appending.
-- The delivered message is under 200 words and matches the required format, or is the exact no-results sentence.
+- The delivered message is under 400 words and matches the required two-track format, or is exactly `[SILENT]` when neither track succeeds.
 
 ## Pitfalls
 
